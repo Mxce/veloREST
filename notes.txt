@@ -1,5 +1,5 @@
-genREST done, predict OK
+genREST done, predict OK, cluster OK
 fitmodelsREST 0
 predictREST done, predict OK
-clusterREST 0
+clusterREST done, send cluster OK
 csvREST done, mais les csv devraient se trouver hors du container? facile en theorie

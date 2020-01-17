@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, send_file
+from flask import Flask, send_from_directory
 
 
 dirname = 'CSV'
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Ask for a CSV file using /station?station_id!"
+    return "Ask for a CSV file using /station?station_id  !"
 
 @app.route('/stations/<int:station_id>')
 def get_station(station_id):

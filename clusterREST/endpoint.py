@@ -1,9 +1,8 @@
-from flask import Flask
-from flask import request as frequest
-
-app = Flask(__name__)
+from flask import Flask, send_from_directory
 
 dirname = ''
+
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -12,14 +11,7 @@ def index():
 @app.route('/cluster/<int:station_id>')
 def get_prediction(station_id):
 	###############################################################
-	return( '/predict/' + str(station_id) 
-		+'?'+ str(year)+'&'+ str(month)+'&'+ str(day)+'&'+ str(hour)+'&'+ str(weather))
-	
-@app.route('/updatemodel/<int:station_id>')
-def update_model(station_id, methods = ['POST']):
-	###############################################################
-	return 'model of station ' + station_id + ' updated successfuly!'
-
+	return send_from_directory(dirname, str(station_id) + '.html')
 	
 if __name__ == '__main__':
     app.run(debug=True)

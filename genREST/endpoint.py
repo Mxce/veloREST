@@ -32,7 +32,7 @@ def get_prediction(station_id):
 @app.route('/cluster/<int:station_id>')
 def get_cluster(station_id):
 	#SENDING REQUEST TO clusterREST
-	return(requests.get(addresses['clusterREST'] + '/cluster/' + str(station_id)))
+	return requests.get(addresses['clusterREST'] + '/cluster/' + str(station_id)).text
 	
 if __name__ == '__main__':
     app.run(debug=True)
