@@ -1,0 +1,5 @@
+genREST done, predict OK
+fitmodelsREST 0
+predictREST done, predict OK
+clusterREST 0
+csvREST done, mais les csv devraient se trouver hors du container? facile en theorie
