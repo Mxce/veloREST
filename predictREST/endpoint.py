@@ -1,7 +1,10 @@
 from flask import Flask
 from flask import request as frequest
+import pickle
 
 app = Flask(__name__)
+
+dirname = 'MODELS'
 
 @app.route('/')
 def index():
@@ -21,6 +24,11 @@ def get_prediction(station_id):
 	
 @app.route('/updatemodel/<int:station_id>')
 def update_model(station_id, methods = ['POST']):
+	#ineficient to unpickle then pickle again, but… does it matter?
+	srlzd = request.data
+	model = pickle.load(srlzd)
+	file = open(dirname + '/' + str(station_id), 'w')
+	pickle.dump(model,file)
 	###############################################################
 	return 'model of station ' + station_id + ' updated successfuly!'
 

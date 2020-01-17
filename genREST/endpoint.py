@@ -1,11 +1,11 @@
 from flask import Flask
 from flask import request as frequest
-from yaml import safe_load as load
+import yaml
 import requests
 
 app = Flask(__name__)
 
-addresses = load(open("conf.yaml"))['addresses']
+addresses = yaml.safe_load(open("conf.yaml"))['addresses']
 
 @app.route('/')
 def index():
