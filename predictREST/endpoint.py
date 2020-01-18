@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request as frequest
 import pickle
+import datetime
+import os
 
 app = Flask(__name__)
 
@@ -12,25 +14,36 @@ def index():
 	
 @app.route('/predict/<int:station_id>')
 def get_prediction(station_id):
-	year= frequest.args.get('year')
-	month= frequest.args.get('month')
-	day= frequest.args.get('day')
-	hour= frequest.args.get('hour')
-	weather= frequest.args.get('weather')
-	###############################################################
-	predict = '?????'
-	return( '/predict/' + str(station_id) 
-		+'?'+ str(year)+'&'+ str(month)+'&'+ str(day)+'&'+ str(hour)+'&'+ str(weather))
+	year= int(frequest.args.get('year'))
+	month= int(frequest.args.get('month'))
+	day= int(frequest.args.get('day'))
+	hour= int(frequest.args.get('hour'))
+	weather= int(frequest.args.get('weather'))
+	print(str(year) + str(month) + str(day))
+	week= datetime.date(year,month,day).isocalendar()[1]
 	
-@app.route('/updatemodel/<int:station_id>')
-def update_model(station_id, methods = ['POST']):
-	#ineficient to unpickle then pickle again, but… does it matter?
-	srlzd = request.data
-	model = pickle.load(srlzd)
-	file = open(dirname + '/' + str(station_id), 'w')
-	pickle.dump(model,file)
+	path = dirname + '/' + str(station_id)
+	
 	###############################################################
-	return 'model of station ' + station_id + ' updated successfuly!'
+	if os.path.exists(path):
+		file= open(path, 'rb')
+		mod=pickle.load(file)
+		file.close()
+		predict = mod.predict([[year,week, day,hour, weather]])
+		return str(predict[0])		
+	else:
+		return 'model does not exist… yet?'
+	
+@app.route('/updatemodel/<int:station_id>', methods = ['POST'])
+def update_model(station_id):
+	#ineficient to unpickle then pickle again, but… does it matter?
+	srlzd = frequest.data
+	model = pickle.loads(srlzd)
+	file = open(dirname + '/' + str(station_id), 'wb')
+	pickle.dump(model,file)
+	file.close()
+	###############################################################
+	return 'model of station ' + str(station_id) + ' updated successfuly!'
 
 	
 if __name__ == '__main__':

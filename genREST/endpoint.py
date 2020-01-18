@@ -12,10 +12,10 @@ def index():
     return "You can fit the models, predict a value or ask for clustering data use /predict?station_id&year&month&day&hour&weather\nOR /fit\nOR /cluster?station_id"
 
 #this should be protected...
-@app.route('/fit')
-def fit():
+@app.route('/fit/<station_id>')
+def fit(station_id):
 	#SENDING REQUEST TO fitmodelREST
-	return requests.get(addresses['fitmodelsREST'] + '/fit')
+	return requests.get(addresses['fitmodelsREST'] + '/fit/' + str(station_id)).text
 	
 @app.route('/predict/<int:station_id>')
 def get_prediction(station_id):
@@ -25,8 +25,8 @@ def get_prediction(station_id):
 	hour= frequest.args.get('hour')
 	weather= frequest.args.get('weather')
 	#SENDING REQUEST TO predictREST
-	return requests.get(addresses['predictREST'] + '/predict/' + str(station_id),
-		params={'year': year, 'month': month, 'day': day, 'hour': hour, 'weather': weather}).text
+	print(addresses['predictREST'] + '/predict/' + str(station_id)+ '?' + str(year) + '&'+ str(month) + '&' + str(day) + '&' + str(hour) + '&' + str(weather))
+	return requests.get(addresses['predictREST'] + '/predict/' + str(station_id)+ '?year=' + str(year) + '&month='+ str(month) + '&day=' + str(day) + '&hour=' + str(hour) + '&weather=' + str(weather)).text
 
 
 @app.route('/cluster/<int:station_id>')

@@ -3,6 +3,7 @@ import yaml
 import requests
 import csv
 import pickle
+from io import StringIO, BytesIO
 
 from fitter import modelfitter
 
@@ -13,14 +14,15 @@ addresses = yaml.safe_load(open("conf.yaml"))['addresses']
 def get_fit_model(station_id):
 	'''gets the trained model using modelfitter from imported module'''
 	csv_as_text = requests.get(addresses['csvREST'] + '/stations/' + str(station_id)).text
-	data = csv.read(csv_as_text)
-	return modelfitter(data)
+	io = StringIO(csv_as_text)
+	return modelfitter(io)
 
 def fit_one(station_id):
 	'''fits a model then POSTs it to predicrREST'''
 	mod = get_fit_model(station_id)
 	srlzd = pickle.dumps(mod)
-	return requests.post(addresses['predictREST']+ '/updatemodel/' +str(station_id), srlzd)
+	#io = BytesIO(srlzd)
+	return requests.post(addresses['predictREST']+ '/updatemodel/' +str(station_id),srlzd).text
 
 @app.route('/')
 def index():

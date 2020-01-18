@@ -1,2 +1,4 @@
 gunicorn --bind 0.0.0.0:8000 wsgi
 
+curl 'http://127.0.0.1:5000/predict/519?year=2019&month=6&day=15&hour=12&weather=2'
+

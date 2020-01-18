@@ -11,7 +11,8 @@ def index():
 
 @app.route('/stations/<int:station_id>')
 def get_station(station_id):
-	return send_from_directory(dirname, str(station_id) + '.csv')
+	#return 4
+	return send_from_directory(dirname, str(station_id) + 'dataframe.csv')
 	
 #send_file(dirname + '/'+ str(station_id) + 'class.csv', as_attachment=False)
 #send_from_directory(dirname, str(station_id) + 'class.csv')

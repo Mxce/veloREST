@@ -2,5 +2,5 @@ addresses:
     genREST: http://127.0.0.1:5000
     predictREST: http://127.0.0.1:5001
     clusterREST: http://127.0.0.1:5002
-    fitmodelsREST: http://127.0.0.1:5003
+    fixmodelsREST: http://127.0.0.1:5003
     csvREST: http://127.0.0.1:5004
