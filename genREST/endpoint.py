@@ -1,9 +1,13 @@
 from flask import Flask
 from flask import request as frequest
+from flask_cors import CORS
 import yaml
 import requests
 
+
+
 app = Flask(__name__)
+CORS(app)
 
 addresses = yaml.safe_load(open("conf.yaml"))['addresses']
 
@@ -32,6 +36,7 @@ def get_prediction(station_id):
 @app.route('/cluster/<int:station_id>')
 def get_cluster(station_id):
 	#SENDING REQUEST TO clusterREST
+	print('test')
 	return requests.get(addresses['clusterREST'] + '/cluster/' + str(station_id)).text
 	
 if __name__ == '__main__':

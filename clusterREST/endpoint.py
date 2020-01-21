@@ -11,6 +11,7 @@ def index():
 @app.route('/cluster/<int:station_id>')
 def get_prediction(station_id):
 	###############################################################
+	print('seding cluster ' + str(station_id))
 	return send_from_directory(dirname, str(station_id) + '.html')
 	
 if __name__ == '__main__':
