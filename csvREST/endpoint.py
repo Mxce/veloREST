@@ -14,6 +14,11 @@ def get_station(station_id):
 	#return 4
 	return send_from_directory(dirname, str(station_id) + 'dataframe.csv')
 	
+@app.route('/stationsclusters/<int:station_id>')
+def get_stationclusters(station_id):
+	#return 4
+	return send_from_directory(dirname + '/CLUSTERS', str(station_id) + '.csv')
+	
 #send_file(dirname + '/'+ str(station_id) + 'class.csv', as_attachment=False)
 #send_from_directory(dirname, str(station_id) + 'class.csv')
 

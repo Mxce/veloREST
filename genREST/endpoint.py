@@ -21,6 +21,11 @@ def fit(station_id):
 	#SENDING REQUEST TO fitmodelREST
 	return requests.get(addresses['fitmodelsREST'] + '/fit/' + str(station_id)).text
 	
+@app.route('/fitcluster/<station_id>')
+def fit_cluster(station_id):
+	#SENDING REQUEST TO fitmodelREST
+	return requests.get(addresses['fitmodelsREST'] + '/fitcluster/' + str(station_id)).text
+	
 @app.route('/predict/<int:station_id>')
 def get_prediction(station_id):
 	year= frequest.args.get('year')

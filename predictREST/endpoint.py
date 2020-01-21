@@ -32,11 +32,11 @@ def get_prediction(station_id):
 		predict = mod.predict([[year,week, day,hour, weather]])
 		return str(predict[0])		
 	else:
-		return 'model does not exist… yet?'
+		return 'model does not exist.. yet?'
 	
 @app.route('/updatemodel/<int:station_id>', methods = ['POST'])
 def update_model(station_id):
-	#ineficient to unpickle then pickle again, but… does it matter?
+	#ineficient to unpickle then pickle again, but.. does it matter?
 	srlzd = frequest.data
 	model = pickle.loads(srlzd)
 	file = open(dirname + '/' + str(station_id), 'wb')
