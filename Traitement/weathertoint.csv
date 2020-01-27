@@ -1,0 +1,36 @@
+sky is clear,1
+few clouds,1
+scattered clouds,1
+mist,2
+overcast clouds,2
+broken clouds,2
+smoke,2
+haze,2
+fog,2
+light intensity drizzle,2
+drizzle,2
+heavy intensity drizzle,3
+light rain,3
+proximity thunderstorm,3
+light intensity shower rain,3
+shower rain,3
+light snow,4
+light rain and snow,4
+thunderstorm with light drizzle,4
+thunderstorm with light rain,4
+squalls,4
+proximity thunderstorm with drizzle,4
+proximity thunderstorm with rain,4
+moderate rain,4
+dust,5
+sand,5
+freezing rain,5
+thunderstorm,5
+heavy thunderstorm,5
+snow,5
+thunderstorm with rain,5
+heavy intensity rain,5
+thunderstorm with heavy rain,5
+very heavy rain,5
+sand/dust whirls,5
+heavy snow,5
